@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send a Case | Accudent Dental Lab</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/AccudentLogoBlackTransparent.png" type="image/x-icon">
+    <style>
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 1rem 0;
+        }
+        .upload-area:hover {
+            border-color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+        .upload-area i {
+            font-size: 3rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+        .file-preview {
+            display: none;
+            margin: 1rem 0;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            flex: 1;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #dee2e6;
+            color: #6c757d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: bold;
+        }
+        .step.active .step-number {
+            background: #0d6efd;
+            color: white;
+        }
+        .step.completed .step-number {
+            background: #198754;
+            color: white;
+        }
+        .step-title {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .step.active .step-title {
+            color: #0d6efd;
+            font-weight: 500;
+        }
+        .step.completed .step-title {
+            color: #198754;
+        }
+        .step-connector {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            right: 50%;
+            height: 2px;
+            background: #dee2e6;
+            z-index: -1;
+        }
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation container -->
+    <div id="navigation-container"></div>
+    
+    <!-- Navigation Script -->
+    <script src="../js/navigation.js"></script>
+    
+    <script>
+    // Fix for navigation active state
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add active class to current page in navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes('upload.html')) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+    </script>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4 p-md-5">
+                            <h1 class="text-center mb-5">Send Us a Case</h1>
+                            
+                            <!-- Step Indicator -->
+                            <div class="step-indicator">
+                                <div class="step active" id="step1-indicator">
+                                    <div class="step-number">1</div>
+                                    <div class="step-title">Case Details</div>
+                                </div>
+                                <div class="step" id="step2-indicator">
+                                    <div class="step-number">2</div>
+                                    <div class="step-title">Upload Files</div>
+                                </div>
+                                <div class="step" id="step3-indicator">
+                                    <div class="step-number">3</div>
+                                    <div class="step-title">Review & Submit</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 1: Case Details -->
+                            <div id="step1" class="form-section active">
+                                <h3 class="mb-4">Case Information</h3>
+                                <form id="caseDetailsForm" onsubmit="event.preventDefault(); nextStep(1);">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="patientName" class="form-label">Patient Name</label>
+                                            <input type="text" class="form-control" id="patientName" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="patientDob" class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" id="patientDob" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="phone" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="shade" class="form-label">Shade</label>
+                                            <select class="form-select" id="shade" required>
+                                                <option value="" selected disabled>Select shade</option>
+                                                <option value="A1">A1</option>
+                                                <option value="A2">A2</option>
+                                                <option value="A3">A3</option>
+                                                <option value="A3.5">A3.5</option>
+                                                <option value="A4">A4</option>
+                                                <option value="B1">B1</option>
+                                                <option value="B2">B2</option>
+                                                <option value="B3">B3</option>
+                                                <option value="B4">B4</option>
+                                                <option value="C1">C1</option>
+                                                <option value="C2">C2</option>
+                                                <option value="C3">C3</option>
+                                                <option value="C4">C4</option>
+                                                <option value="D2">D2</option>
+                                                <option value="D3">D3</option>
+                                                <option value="D4">D4</option>
+                                                <option value="BL1">BL1</option>
+                                                <option value="BL2">BL2</option>
+                                                <option value="BL3">BL3</option>
+                                                <option value="BL4">BL4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="material" class="form-label">Material</label>
+                                            <select class="form-select" id="material" required>
+                                                <option value="" selected disabled>Select material</option>
+                                                <option value="e.max">e.max</option>
+                                                <option value="bruxzir-full">BruxZir Full Strength</option>
+                                                <option value="bruxzir-esthetic">BruxZir Esthetic</option>
+                                                <option value="3d-zirconia">3D Zirconia</option>
+                                                <option value="translucent-zirconia">Translucent Zirconia</option>
+                                                <option value="noritake-czr">Noritake CZR</option>
+                                                <option value="custom-abutment">Custom Implant Abutment</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="restoration" class="form-label">Restoration Type</label>
+                                            <select class="form-select" id="restoration" required>
+                                                <option value="" selected disabled>Select type</option>
+                                                <option value="crown">Crown</option>
+                                                <option value="bridge">Bridge</option>
+                                                <option value="veneer">Veneer</option>
+                                                <option value="inlay">Inlay</option>
+                                                <option value="onlay">Onlay</option>
+                                                <option value="overlay">Overlay</option>
+                                                <option value="implant-abutment">Implant Abutment</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="teeth" class="form-label">Teeth #</label>
+                                            <input type="text" class="form-control" id="teeth" placeholder="e.g., 8, 9, 10" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="notes" class="form-label">Special Instructions</label>
+                                            <textarea class="form-control" id="notes" rows="3" placeholder="Any special instructions or notes about the case..."></textarea>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn btn-primary float-end">
+                                                Next: Upload Files <i class="fas fa-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Step 2: Upload Files -->
+                            <div id="step2" class="form-section">
+                                <h3 class="mb-4">Upload STL Files</h3>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Please upload all relevant STL files for your case. You can upload multiple files at once.
+                                </div>
+                                
+                                <div class="upload-area" id="dropZone">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <h4>Drag & Drop your files here</h4>
+                                    <p class="text-muted">or click to browse files</p>
+                                    <input type="file" id="fileInput" multiple accept=".stl,.zip" style="display: none;">
+                                </div>
+
+                                <div class="file-preview" id="filePreview">
+                                    <h5>Selected Files:</h5>
+                                    <div id="fileList" class="d-flex flex-wrap"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="prevStep(2)">
+                                        <i class="fas fa-arrow-left me-2"></i> Back
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="nextToReview" disabled onclick="nextStep(2)">
+                                        Next: Review & Submit <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Review & Submit -->
+                            <div id="step3" class="form-section">
+                                <h3 class="mb-4">Review & Submit</h3>
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Case Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>Patient Name:</strong> <span id="reviewPatientName"></span></p>
+                                                <p><strong>Date of Birth:</strong> <span id="reviewDob"></span></p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>Phone:</strong> <span id="reviewPhone"></span></p>
+                                                <p><strong>Email:</strong> <span id="reviewEmail"></span></p>
+                                                <p><strong>Shade:</strong> <span id="reviewShade"></span></p>
+                                                <p><strong>Material:</strong> <span id="reviewMaterial"></span></p>
+                                                <p><strong>Restoration Type:</strong> <span id="reviewRestoration"></span></p>
+                                                <p><strong>Teeth #:</strong> <span id="reviewTeeth"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <p class="mb-1"><strong>Special Instructions:</strong></p>
+                                            <p id="reviewNotes" class="text-muted">None</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Files to Upload</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul id="reviewFileList" class="mb-0"></ul>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">
+                                        I confirm that all information provided is accurate and I have the necessary permissions to submit this case.
+                                    </label>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="prevStep(3)">
+                                        <i class="fas fa-arrow-left me-2"></i> Back
+                                    </button>
+                                    <button type="button" class="btn btn-success" id="submitCase" onclick="submitCase()">
+                                        <i class="fas fa-paper-plane me-2"></i> Submit Case
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Success Message (initially hidden) -->
+                            <div id="successMessage" class="text-center py-5" style="display: none;">
+                                <div class="card border-0 shadow-sm mx-auto" style="max-width: 600px;">
+                                    <div class="card-body p-5">
+                                        <div class="mb-4">
+                                            <div class="bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 100px; height: 100px;">
+                                                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                                            </div>
+                                        </div>
+                                        <h2 class="mb-4">Case Submitted Successfully!</h2>
+                                        
+                                        <div id="successDetails" class="bg-light p-4 rounded-3 text-start mb-4">
+                                            <div class="text-center mb-3">
+                                                <i class="fas fa-clipboard-check text-primary me-2"></i>
+                                                <strong>Case Details</strong>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div><small class="text-muted">Case ID</small></div>
+                                                    <div id="caseIdDisplay" class="fw-bold">Loading...</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div><small class="text-muted">Patient Name</small></div>
+                                                    <div id="patientNameDisplay" class="fw-bold"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div><small class="text-muted">Files Uploaded</small></div>
+                                                    <div id="fileCountDisplay" class="fw-bold"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div><small class="text-muted">Submission Time</small></div>
+                                                    <div id="submissionTime" class="fw-bold"></div>
+                                                </div>
+                                                <div class="col-12 mt-2" id="driveLinkContainer">
+                                                    <!-- Google Drive link will be inserted here -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-muted mb-4">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            We've received your case and will begin processing it shortly. You'll receive a confirmation email with further details.
+                                        </p>
+
+                                        <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+                                            <a href="upload.html" class="btn btn-primary px-4">
+                                                <i class="fas fa-plus-circle me-2"></i>Submit Another Case
+                                            </a>
+                                            <a href="index.html" class="btn btn-outline-secondary px-4">
+                                                <i class="fas fa-home me-2"></i>Return Home
+                                            </a>
+                                        </div>
+
+                                        <div class="mt-4 pt-3 border-top text-muted small">
+                                            <p class="mb-1">Need help? Contact our support team at <a href="mailto:Accudent@comcast.net">Accudent@comcast.net</a></p>
+                                            <p class="mb-0">Accudent Dental Lab • 5283 W 8180 S, West Jordan, UT 84081</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Fix for navigation active state
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to current page in navigation
+            const currentPath = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href').includes(currentPath)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    
+    <!-- Custom JS for Upload Page -->
+    <script>
+        // Form data storage
+        let formData = {
+            patientName: '',
+            patientDob: '',
+            doctorName: '',
+            practiceName: '',
+            phone: '',
+            email: '',
+            shade: '',
+            material: '',
+            restoration: '',
+            teeth: '',
+            notes: '',
+            files: []
+        };
+
+        // Step navigation
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update step indicators
+            document.querySelectorAll('.step').forEach((el, index) => {
+                el.classList.remove('active', 'completed');
+                if (index + 1 < step) {
+                    el.classList.add('completed');
+                } else if (index + 1 === step) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+
+        // Next step
+        function nextStep(currentStep) {
+            console.log('nextStep called with step:', currentStep);
+            
+            // Validate current step before proceeding
+            if (currentStep === 1) {
+                const form = document.getElementById('caseDetailsForm');
+                console.log('Form validation result:', form.checkValidity());
+                
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return false;
+                }
+                
+                // Save form data
+                formData = {
+                    ...formData,
+                    patientName: document.getElementById('patientName').value,
+                    patientDob: document.getElementById('patientDob').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    shade: document.getElementById('shade').value,
+                    material: document.getElementById('material').value,
+                    restoration: document.getElementById('restoration').value,
+                    teeth: document.getElementById('teeth').value,
+                    notes: document.getElementById('notes').value || ''
+                };
+                
+                console.log('Form data saved:', formData);
+                
+            } else if (currentStep === 2) {
+                if (formData.files.length === 0) {
+                    alert('Please upload at least one file before proceeding.');
+                    return false;
+                }
+                updateReviewSection();
+            }
+            
+            // Navigate to next step
+            goToStep(currentStep + 1);
+            return false;
+        }
+
+        // Previous step
+        function prevStep(currentStep) {
+            goToStep(currentStep - 1);
+        }
+
+        // Update review section with form data
+        function updateReviewSection() {
+            // Helper function to safely set text content
+            function setTextContent(id, text) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text || 'Not provided';
+                }
+            }
+
+            // Update patient information
+            setTextContent('reviewPatientName', formData.patientName);
+            setTextContent('reviewDob', formData.patientDob);
+            setTextContent('reviewPhone', formData.phone);
+            setTextContent('reviewEmail', formData.email);
+            setTextContent('reviewShade', formData.shade);
+            
+            // Update material and restoration with text from select options
+            try {
+                const materialSelect = document.querySelector(`#material option[value="${formData.material}"]`);
+                const restorationSelect = document.querySelector(`#restoration option[value="${formData.restoration}"]`);
+                setTextContent('reviewMaterial', materialSelect ? materialSelect.text : formData.material);
+                setTextContent('reviewRestoration', restorationSelect ? restorationSelect.text : formData.restoration);
+            } catch (e) {
+                console.error('Error updating select values:', e);
+            }
+            
+            setTextContent('reviewTeeth', formData.teeth);
+            setTextContent('reviewNotes', formData.notes || 'None');
+            
+            // Update file list
+            const fileList = document.getElementById('reviewFileList');
+            if (fileList) {
+                fileList.innerHTML = '';
+                if (formData.files && formData.files.length > 0) {
+                    formData.files.forEach(file => {
+                        const li = document.createElement('li');
+                        li.className = 'mb-1';
+                        li.textContent = file.name || 'Unnamed file';
+                        fileList.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.className = 'text-muted';
+                    li.textContent = 'No files uploaded';
+                    fileList.appendChild(li);
+                }
+            }
+        }
+
+
+        // Next step
+        function nextStep(currentStep) {
+            console.log('nextStep called with step:', currentStep);
+            
+            // Validate current step before proceeding
+            if (currentStep === 1) {
+                const form = document.getElementById('caseDetailsForm');
+                console.log('Form validation result:', form.checkValidity());
+                
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return false;
+                }
+                
+                // Save form data
+                formData = {
+                    ...formData,
+                    patientName: document.getElementById('patientName').value,
+                    patientDob: document.getElementById('patientDob').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    shade: document.getElementById('shade').value,
+                    material: document.getElementById('material').value,
+                    restoration: document.getElementById('restoration').value,
+                    teeth: document.getElementById('teeth').value,
+                    notes: document.getElementById('notes').value || ''
+                };
+                
+                console.log('Form data saved:', formData);
+                
+            } else if (currentStep === 2) {
+                if (formData.files.length === 0) {
+                    alert('Please upload at least one file before proceeding.');
+                    return false;
+                }
+                updateReviewSection();
+            }
+            
+            // Navigate to next step
+            goToStep(currentStep + 1);
+            return false;
+        }
+
+        // Previous step
+        function prevStep(currentStep) {
+            goToStep(currentStep - 1);
+        }
+
+        // Update review section with form data
+        function updateReviewSection() {
+            // Helper function to safely set text content
+            function setTextContent(id, text) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text || 'Not provided';
+                }
+            }
+
+            // Update patient information
+            setTextContent('reviewPatientName', formData.patientName);
+            setTextContent('reviewDob', formData.patientDob);
+            setTextContent('reviewPhone', formData.phone);
+            setTextContent('reviewEmail', formData.email);
+            setTextContent('reviewShade', formData.shade);
+            
+            // Update material and restoration with text from select options
+            try {
+                const materialSelect = document.querySelector(`#material option[value="${formData.material}"]`);
+                const restorationSelect = document.querySelector(`#restoration option[value="${formData.restoration}"]`);
+                setTextContent('reviewMaterial', materialSelect ? materialSelect.text : formData.material);
+                setTextContent('reviewRestoration', restorationSelect ? restorationSelect.text : formData.restoration);
+            } catch (e) {
+                console.error('Error updating select values:', e);
+            }
+            
+            setTextContent('reviewTeeth', formData.teeth);
+            setTextContent('reviewNotes', formData.notes || 'None');
+            
+            // Update file list
+            const fileList = document.getElementById('reviewFileList');
+            if (fileList) {
+                fileList.innerHTML = '';
+                if (formData.files && formData.files.length > 0) {
+                    formData.files.forEach(file => {
+                        const li = document.createElement('li');
+                        li.className = 'mb-1';
+                        li.textContent = file.name || 'Unnamed file';
+                        fileList.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.className = 'text-muted';
+                    li.textContent = 'No files uploaded';
+                    fileList.appendChild(li);
+                }
+            }
+        }
+
+        // Submit case
+        async function submitCase() {
+            // Check if terms are accepted
+            if (!document.getElementById('termsCheck').checked) {
+                alert('Please confirm that all information is accurate before submitting.');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submitCase');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Uploading...';
+            
+            try {
+                // Create FormData object
+                const formDataToSend = new FormData();
+                
+                // Prepare case data object (exclude files)
+                const caseData = { ...formData };
+                delete caseData.files; // Remove files from case data
+                
+                // Add case data as JSON string
+                formDataToSend.append('caseData', JSON.stringify(caseData));
+                
+                // Add files if they exist
+                if (formData.files && formData.files.length > 0) {
+                    console.log('Files to upload:', formData.files);
+                    for (let i = 0; i < formData.files.length; i++) {
+                        const file = formData.files[i];
+                        console.log(`Appending file ${i}:`, file.name, file);
+                        formDataToSend.append('files', file, file.name);
+                    }
+                } else {
+                    throw new Error('No files to upload');
+                }
+                
+                console.log('Sending form data:', Object.fromEntries(formDataToSend));
+                
+                // Send data to server with CORS headers
+                const response = await fetch('http://localhost:3001/api/upload', {
+                    method: 'POST',
+                    body: formDataToSend,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                console.log('Response status:', response.status);
+                const result = await response.json().catch(e => {
+                    console.error('Error parsing JSON response:', e);
+                    throw new Error('Invalid server response');
+                });
+                
+                console.log('Server response:', result);
+                
+                if (!response.ok) {
+                    console.error('Server returned error status:', response.status);
+                    throw new Error(result.error || `Server error: ${response.status} ${response.statusText}`);
+                }
+
+                // Hide the form and show success message
+                document.querySelector('.form-section.active').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Scroll to top of page for better UX
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Update success details
+                const caseId = result.caseId || 'CASE-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+                const patientName = formData.patientName || 'Not provided';
+                const filesCount = formData.files ? formData.files.length : 0;
+                const submissionTime = new Date().toLocaleString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                });
+                
+                // Update the DOM elements with case details
+                document.getElementById('caseIdDisplay').textContent = caseId;
+                document.getElementById('patientNameDisplay').textContent = patientName;
+                document.getElementById('fileCountDisplay').textContent = `${filesCount} file${filesCount !== 1 ? 's' : ''}`;
+                document.getElementById('submissionTime').textContent = submissionTime;
+                
+                // Add Google Drive link if available
+                const driveLinkContainer = document.getElementById('driveLinkContainer');
+                if (result.folderLink) {
+                    driveLinkContainer.innerHTML = `
+                        <div class="mt-3">
+                            <a href="${result.folderLink}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>View in Google Drive
+                            </a>
+                        </div>
+                    `;
+                }
+                
+                // Clear form data from localStorage
+                localStorage.removeItem('formData');
+                
+                // Reset the form for potential new submissions
+                document.querySelector('form').reset();
+                formData.files = [];
+                
+                // Hide any error messages
+                const errorMessages = document.querySelectorAll('.alert-danger');
+                errorMessages.forEach(el => el.remove());
+                
+                return; // Exit function after successful handling
+            } catch (error) {
+                console.error('Error uploading files:', error);
+                
+                // Show error message in a more user-friendly way
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger mt-3';
+                errorDiv.innerHTML = `
+                    <h5 class="alert-heading">Upload Failed</h5>
+                    <p>${error.message || 'An unknown error occurred'}</p>
+                    <p class="mb-0">Please try again or contact support if the problem persists.</p>
+                `;
+                
+                // Insert error message above the submit button
+                const submitBtn = document.getElementById('submitCase');
+                submitBtn.parentNode.insertBefore(errorDiv, submitBtn);
+                
+                // Re-enable the submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Case';
+                
+                // Scroll to error message
+                errorDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            const nextToReview = document.getElementById('nextToReview');
+            
+            // Initialize form data from storage if available
+            if (localStorage.getItem('formData')) {
+                try {
+                    const savedData = JSON.parse(localStorage.getItem('formData'));
+                    formData = { ...formData, ...savedData };
+                    
+                    // Restore form values if on step 1
+                    if (document.getElementById('patientName')) {
+                        document.getElementById('patientName').value = formData.patientName || '';
+                        document.getElementById('patientDob').value = formData.patientDob || '';
+                        document.getElementById('phone').value = formData.phone || '';
+                        document.getElementById('email').value = formData.email || '';
+                        document.getElementById('shade').value = formData.shade || '';
+                        document.getElementById('material').value = formData.material || '';
+                        document.getElementById('restoration').value = formData.restoration || '';
+                        document.getElementById('teeth').value = formData.teeth || '';
+                        document.getElementById('notes').value = formData.notes || '';
+                    }
+                    
+                    // Restore files if any
+                    if (formData.files && formData.files.length > 0) {
+                        updateFileList();
+                    }
+                } catch (e) {
+                    console.error('Error loading saved form data:', e);
+                    localStorage.removeItem('formData');
+                }
+            }
+            
+            // Handle click on drop zone to trigger file input
+            dropZone.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // Drag and drop functionality
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropZone.classList.add('border-primary');
+                dropZone.style.backgroundColor = 'rgba(13, 110, 253, 0.05)';
+            }
+            
+            function unhighlight() {
+                dropZone.classList.remove('border-primary');
+                dropZone.style.backgroundColor = '';
+            }
+            
+            // Handle file drop
+            dropZone.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                preventDefaults(e);
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            // Handle file input change
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            // Process files
+            function handleFiles(files) {
+                if (!files || files.length === 0) return;
+                
+                // Convert FileList to array and add to formData.files
+                const newFiles = Array.from(files);
+                
+                // Add new files to existing ones
+                formData.files = [...(formData.files || []), ...newFiles];
+                
+                // Update UI
+                updateFileList();
+                
+                // Enable/disable next button based on file count
+                if (nextToReview) {
+                    nextToReview.disabled = formData.files.length === 0;
+                }
+                
+                // Note: We don't save File objects to localStorage as they can't be serialized
+                // They'll be recreated when the form is submitted
+            }
+            
+            // Update file list display
+            function updateFileList() {
+                const fileList = document.getElementById('fileList');
+                const filePreview = document.getElementById('filePreview');
+                
+                if (fileList && formData.files && formData.files.length > 0) {
+                    fileList.innerHTML = '';
+                    filePreview.style.display = 'block';
+                    
+                    formData.files.forEach((file, index) => {
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'd-flex align-items-center bg-light rounded p-2 mb-2 me-2';
+                        fileItem.innerHTML = `
+                            <i class="fas fa-file me-2 text-primary"></i>
+                            <div class="me-2" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                ${file.name}
+                            </div>
+                            <small class="text-muted me-2">${formatFileSize(file.size)}</small>
+                            <button type="button" class="btn-close" data-file-name="${file.name}" aria-label="Remove"></button>
+                        `;
+                        fileList.appendChild(fileItem);
+                    });
+                } else {
+                    fileList.innerHTML = '<div class="text-muted">No files selected</div>';
+                    filePreview.style.display = 'none';
+                }
+            }
+            
+            // Handle file removal
+            fileList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-close')) {
+                    const fileName = e.target.getAttribute('data-file-name');
+                    formData.files = formData.files.filter(file => file.name !== fileName);
+                    updateFileList();
+                    
+                    // Update next button state
+                    if (nextToReview) {
+                        nextToReview.disabled = formData.files.length === 0;
+                    }
+                    
+                    // Save to localStorage
+                    try {
+                        const filesToSave = formData.files.map(({ file, ...rest }) => rest);
+                        localStorage.setItem('formData', JSON.stringify({
+                            ...formData,
+                            files: filesToSave
+                        }));
+                    } catch (e) {
+                        console.error('Error saving form data:', e);
+                    }
+                }
+            });
+            
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Initialize first step
+            goToStep(1);
+        });
+    </script>

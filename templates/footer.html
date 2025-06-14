@@ -1,0 +1,99 @@
+<!-- Footer Template -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <img src="/images/AccudentLogoBlackTransparent.png" alt="Accudent Dental Lab" height="60" class="mb-3 bg-white p-2 rounded">
+                <p>Precision dental restorations with a personal touch. Serving dental professionals since 2005.</p>
+                <!-- Social Links - Update with actual URLs before final deployment -->
+                <div class="social-links">
+                    <a href="https://facebook.com/accudentlab" class="text-white me-2" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/accudentlab" class="text-white me-2" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/accudent-dental-lab" class="text-white me-2" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <h5 class="text-uppercase mb-4">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="/html/index.html" class="text-white text-decoration-none">Home</a></li>
+                    <li class="mb-2"><a href="/html/materials.html" class="text-white text-decoration-none">Materials</a></li>
+                    <li class="mb-2"><a href="/html/upload.html" class="text-white text-decoration-none">Send a Case</a></li>
+                    <li class="mb-2"><a href="/html/contact.html" class="text-white text-decoration-none">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h5 class="text-uppercase mb-4">Contact Info</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 1234 Dental Way, West Jordan, UT 84088</li>
+                    <li class="mb-2"><i class="fas fa-phone me-2"></i> (801) 231-6161</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@accudentlab.com</li>
+                    <li class="mb-2"><i class="fas fa-clock me-2"></i> Mon-Fri: 8:00 AM - 5:00 PM MST</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h5 class="text-uppercase mb-4">Newsletter</h5>
+                <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                <form class="mb-3">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email" required>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr class="mt-4">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">&copy; 2025 Accudent Dental Lab. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="/privacy" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    <li class="list-inline-item"><span class="mx-2">|</span></li>
+                    <li class="list-inline-item"><a href="/terms" class="text-white text-decoration-none">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Load Footer -->
+<script>
+    // Load footer into all elements with data-include="footer"
+    document.addEventListener('DOMContentLoaded', function() {
+        const footerElements = document.querySelectorAll('[data-include="footer"]');
+        if (footerElements.length > 0) {
+            // Always use root-relative path to the footer template
+            const templatePath = '/templates/footer.html';
+            
+            fetch(templatePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load footer');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    footerElements.forEach(element => {
+                        element.outerHTML = html;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    // Show a simple fallback footer if loading fails
+                    footerElements.forEach(element => {
+                        element.innerHTML = `
+                            <footer class="bg-dark text-white py-3 text-center">
+                                <div class="container">
+                                    <p class="mb-0">&copy; 2025 Accudent Dental Lab. All rights reserved.</p>
+                                </div>
+                            </footer>`;
+                    });
+                });
+        }
+    });
+</script>

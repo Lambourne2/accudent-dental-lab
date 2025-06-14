@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Link Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .summary { margin-top: 20px; padding: 15px; background-color: #e2e3e5; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Link Checker</h1>
+    <div id="results"></div>
+    <div id="summary" class="summary"></div>
+
+    <script>
+        const pages = [
+            'index.html',
+            'html/upload.html',
+            'html/contact.html',
+            'html/auth/login.html',
+            'html/auth/register.html',
+            'html/materials.html',
+            'html/materials/emax.html',
+            'html/materials/bruxzir-full.html',
+            'html/materials/bruxzir-esthetic.html',
+            'html/materials/3d-zirconia.html',
+            'html/materials/translucent-zirconia.html',
+            'html/materials/noritake-czr.html',
+            'html/materials/custom-abutments.html'
+        ];
+
+        const results = [];
+        const summary = { total: 0, success: 0, errors: 0 };
+
+        function checkPage(url) {
+            return new Promise((resolve) => {
+                fetch(url, { method: 'HEAD' })
+                    .then(response => {
+                        const result = {
+                            url,
+                            status: response.status,
+                            statusText: response.statusText,
+                            success: response.ok
+                        };
+                        results.push(result);
+                        displayResult(result);
+                        resolve(result.success);
+                    })
+                    .catch(error => {
+                        const result = {
+                            url,
+                            status: 0,
+                            statusText: 'Failed to load',
+                            success: false,
+                            error: error.message
+                        };
+                        results.push(result);
+                        displayResult(result);
+                        resolve(false);
+                    });
+            });
+        }
+
+
+        function displayResult(result) {
+            const resultElement = document.createElement('div');
+            resultElement.className = `result ${result.success ? 'success' : 'error'}`;
+            
+            let message = `${result.success ? '✓' : '✗'} ${result.url} - ${result.status} ${result.statusText}`;
+            if (result.error) {
+                message += ` (${result.error})`;
+            }
+            
+            resultElement.textContent = message;
+            document.getElementById('results').appendChild(resultElement);
+            
+            // Update summary
+            summary.total++;
+            if (result.success) summary.success++;
+            else summary.errors++;
+            
+            updateSummary();
+        }
+
+
+        function updateSummary() {
+            const summaryElement = document.getElementById('summary');
+            summaryElement.innerHTML = `
+                <h3>Summary</h3>
+                <p>Total pages checked: ${summary.total}</p>
+                <p>Successful: ${summary.success}</p>
+                <p>Errors: ${summary.errors}</p>
+                <p>Success rate: ${summary.total > 0 ? Math.round((summary.success / summary.total) * 100) : 0}%</p>
+            `;
+        }
+
+        // Start checking all pages
+        async function checkAllPages() {
+            for (const page of pages) {
+                await checkPage(page);
+            }
+        }
+
+        // Start the check when the page loads
+        window.onload = checkAllPages;
+    </script>
+</body>
+</html>

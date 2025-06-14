@@ -1,0 +1,225 @@
+/* 
+ * Accudent Dental Lab Website - Custom Styles
+ * 
+ * This stylesheet contains all custom styling for the Accudent Dental Lab website.
+ * It complements Bootstrap 5 with additional custom styling.
+ */
+
+:root {
+    /* Brand Colors */
+    --primary: #0066cc;
+    --primary-dark: #004d99;
+    --secondary: #464646;
+    --accent: #ff9900;
+    --light-bg: #f8f9fa;
+    --dark-bg: #212529;
+    
+    /* Fonts */
+    --font-primary: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-primary);
+    color: var(--secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* Navigation */
+.navbar {
+    padding: 0.75rem 0;
+}
+
+.navbar-brand img {
+    max-height: 60px;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 5rem 0;
+    background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Material Cards */
+.hover-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Upload Wizard */
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.wizard-step {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.wizard-step.active {
+    background: var(--primary);
+    color: white;
+}
+
+.wizard-step.completed {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.wizard-progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    background: #f1f1f1;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.wizard-progress-bar {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.5s;
+}
+
+/* Dashboard */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-badge.pending {
+    background-color: rgba(255, 153, 0, 0.2);
+    color: #ff9900;
+}
+
+.status-badge.in-production {
+    background-color: rgba(0, 102, 204, 0.2);
+    color: #0066cc;
+}
+
+.status-badge.completed {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+/* File Upload */
+.upload-area {
+    border: 2px dashed #ced4da;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.upload-area:hover, .upload-area.drag-over {
+    background-color: rgba(0, 102, 204, 0.05);
+    border-color: var(--primary);
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Contact Form */
+.contact-info-item {
+    display: flex;
+    align-items: start;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgba(0, 102, 204, 0.1);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+/* Forms */
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 102, 204, 0.25);
+}
+
+/* Footer */
+footer a:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+    
+    .wizard-steps {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .wizard-progress {
+        display: none;
+    }
+    
+    .wizard-step {
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        justify-content: flex-start;
+    }
+    
+    .wizard-step::before {
+        content: attr(data-title);
+        margin-left: 0.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

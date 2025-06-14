@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e.max | Dental Materials | Accudent Dental Lab</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../images/AccudentLogoBlackTransparent.png" type="image/x-icon">
+    <style>
+        .material-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        .specs-card {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+        .specs-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .indication-badge {
+            font-size: 0.9rem;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be inserted here by navigation.js -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <img src="../../images/AccudentLogoBlackTransparent.png" alt="Accudent Dental Lab" height="60">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Materials</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../materials.html">Overview</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item active" href="emax.html">e.max</a></li>
+                            <li><a class="dropdown-item" href="bruxzir-full.html">BruxZir Full Strength</a></li>
+                            <li><a class="dropdown-item" href="bruxzir-esthetic.html">BruxZir Esthetic</a></li>
+                            <li><a class="dropdown-item" href="3d-zirconia.html">3D Zirconia</a></li>
+                            <li><a class="dropdown-item" href="translucent-zirconia.html">Translucent Zirconia</a></li>
+                            <li><a class="dropdown-item" href="noritake-czr.html">Noritake CZR</a></li>
+                            <li><a class="dropdown-item" href="custom-abutments.html">Custom Implant Abutments</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../upload.html">Send a Case</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resources.html">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-primary" href="../auth/login.html">
+                            <i class="fas fa-user me-1"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary" href="../auth/register.html">
+                            <i class="fas fa-user-plus me-1"></i> Register
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="material-hero text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">IPS e.max</h1>
+                    <p class="lead mb-4">The benchmark for esthetic and functional all-ceramic restorations</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#order-now" class="btn btn-primary btn-lg">
+                            <i class="fas fa-upload me-2"></i>Order Now
+                        </a>
+                        <a href="#specifications" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-info-circle me-2"></i>Specifications
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">e.max: The Gold Standard in Esthetic Dentistry</h2>
+                    <p class="lead">IPS e.max is the world's leading all-ceramic system, offering unmatched esthetics and strength for anterior and posterior restorations.</p>
+                    <p>With its high strength and natural light transmission, e.max provides the perfect balance of durability and beauty. The lithium disilicate glass-ceramic material is ideal for creating lifelike restorations that blend seamlessly with natural dentition.</p>
+                    
+                    <div class="my-4">
+                        <h5 class="fw-bold">Key Benefits:</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Exceptional esthetics with natural light transmission</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> High flexural strength (400 MPa for Press, 360 MPa for CAD)</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Minimal tooth preparation required</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Excellent marginal fit and precision</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Biocompatible and metal-free</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-4">
+                                <img src="https://www.ivoclarvivadent.com/medias/IPS-e-max-Press-Product-Image-587x330.png?context=bWFzdGVyfGltYWdlc3w1MzY4MHxpbWFnZS9wbmd8aW1hZ2VzL2g2ZC9oYjUvODk5NDU2ODQwMDYwNi5wbmd8ZWEwYjM3YjNlYzY2MzY1YjQ2YzYwMjY2YzQ4NzY4YzIxYjYyYzFjYmQ1YzM2YjUwYjM1NzUyYzE5ZjY2Yw" alt="e.max Press" class="img-fluid rounded mb-3">
+                                <h5 class="fw-bold">e.max Press & CAD</h5>
+                                <p class="text-muted">Available in both pressed and milled options to suit your clinical needs</p>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <a href="#order-now" class="btn btn-primary">
+                                    <i class="fas fa-shopping-cart me-2"></i>Order e.max Now
+                                </a>
+                                <a href="#" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#shadeGuideModal">
+                                    <i class="fas fa-palette me-2"></i>View Shade Guide
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indications Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Clinical Indications</h2>
+                <p class="lead text-muted">e.max is suitable for a wide range of restorations</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle mb-3 mx-auto">
+                                <i class="fas fa-tooth"></i>
+                            </div>
+                            <h4 class="h5">Veneers</h4>
+                            <p class="mb-0">Ultra-thin, highly esthetic veneers for smile makeovers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle mb-3 mx-auto">
+                                <i class="fas fa-teeth"></i>
+                            </div>
+                            <h4 class="h5">Inlays/Onlays</h4>
+                            <p class="mb-0">Conservative posterior restorations with excellent fit</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle mb-3 mx-auto">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4 class="h5">Crowns</h4>
+                            <p class="mb-0">Full-coverage restorations for anterior and posterior teeth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specifications" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="fw-bold mb-3">Technical Specifications</h2>
+                    <p class="lead text-muted">Comprehensive technical data for e.max restorations</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 specs-card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">Mechanical Properties</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>Flexural Strength:</strong> 400 MPa (Press), 360 MPa (CAD)</li>
+                                <li class="mb-2"><strong>Fracture Toughness:</strong> 2.25 MPa·m<sup>1/2</sup></li>
+                                <li class="mb-2"><strong>Modulus of Elasticity:</strong> 95 GPa</li>
+                                <li class="mb-2"><strong>Vickers Hardness:</strong> 5.8 GPa</li>
+                                <li class="mb-2"><strong>Density:</strong> 2.4 g/cm<sup>3</sup></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 specs-card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">Optical Properties</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>Translucency:</strong> High (LT, HT, MO, HO, BL)</li>
+                                <li class="mb-2"><strong>Refractive Index:</strong> 1.55</li>
+                                <li class="mb-2"><strong>Light Transmission:</strong> Up to 60%</li>
+                                <li class="mb-2"><strong>Fluorescence:</strong> Natural tooth-like</li>
+                                <li class="mb-2"><strong>Opalescence:</strong> Natural</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 specs-card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">Physical Properties</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>CTE:</strong> 10.5 × 10<sup>-6</sup>/K</li>
+                                <li class="mb-2"><strong>Thermal Conductivity:</strong> 1.3 W/(m·K)</li>
+                                <li class="mb-2"><strong>Chemical Solubility:</strong> < 100 μg/cm<sup>2</sup></li>
+                                <li class="mb-2"><strong>Biocompatibility:</strong> ISO 10993 & FDA approved</li>
+                                <li class="mb-2"><strong>Radio-opacity:</strong> 2.0 mm Al equivalent</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Now Section -->
+    <section id="order-now" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-4">Ready to Order e.max Restorations?</h2>
+                    <p class="lead mb-5">Create an account or log in to submit your e.max cases with just a few clicks.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="../auth/register.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </a>
+                        <a href="../auth/login.html" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </a>
+                    </div>
+                    <p class="mt-4">Have questions about e.max? <a href="../contact.html">Contact our support team</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shade Guide Modal -->
+    <div class="modal fade" id="shadeGuideModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">e.max Shade Guide</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Shade Code</th>
+                                    <th>Description</th>
+                                    <th>Translucency</th>
+                                    <th>Recommended Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>BL1-BL4</td>
+                                    <td>Bleach Shades</td>
+                                    <td>High</td>
+                                    <td>Veneers, Anterior Crowns</td>
+                                </tr>
+                                <tr>
+                                    <td>A1-D4</td>
+                                    <td>VITA Classical</td>
+                                    <td>Medium-High</td>
+                                    <td>All Restorations</td>
+                                </tr>
+                                <tr>
+                                    <td>MO1-MO3</td>
+                                    <td>Medium Opacious</td>
+                                    <td>Medium</td>
+                                    <td>Posterior Crowns, Bridges</td>
+                                </tr>
+                                <tr>
+                                    <td>HO1-HO4</td>
+                                    <td>High Opacity</td>
+                                    <td>Low</td>
+                                    <td>Masking Discoloration</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-primary">Download Full Shade Guide (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../../js/main.js"></script>
+</body>
+</html>

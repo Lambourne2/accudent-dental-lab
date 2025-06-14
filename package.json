@@ -1,0 +1,30 @@
+{
+  "name": "accudent-dental-lab",
+  "version": "1.0.0",
+  "description": "Accudent Dental Lab - Professional Dental Laboratory Services",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8080",
+    "check-links": "node test-links.js"
+  },
+  "keywords": [
+    "dental",
+    "laboratory",
+    "dental-lab",
+    "dental-services"
+  ],
+  "author": "Accudent Dental Lab",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "http-server": "^14.1.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Accudent Dental Lab</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/AccudentLogoBlackTransparent.png" type="image/x-icon">
+    <style>
+        .contact-info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation container -->
+    <div id="navigation-container"></div>
+    
+    <!-- Navigation Script -->
+    <script src="../js/navigation.js"></script>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold">Contact Us</h1>
+                <p class="lead">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Contact Form -->
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="mb-4">Send Us a Message</h3>
+                            <form id="contactForm" action="/api/contact" method="POST">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label">Subject</label>
+                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="formSuccess" class="alert alert-success mt-3 d-none" role="alert">
+                                Your message has been sent successfully!
+                            </div>
+                            <div id="formError" class="alert alert-danger mt-3 d-none" role="alert">
+                                There was an error sending your message. Please try again later.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="col-lg-5">
+                    <div class="contact-info-card mb-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <h4>Our Location</h4>
+                            <p class="mb-0">5283 W 8180 S<br>West Jordan, UT 84081</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card mb-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-phone-alt contact-icon"></i>
+                            <h4>Phone</h4>
+                            <p class="mb-0">
+                                <a href="tel:+18014567890" class="text-decoration-none">(801) 456-7890</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <h4>Email</h4>
+                            <p class="mb-0">
+                                <a href="mailto:Accudent@comcast.net" class="text-decoration-none">Accudent@comcast.net</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card mt-4">
+                        <div class="text-center">
+                            <h5>Business Hours</h5>
+                            <p class="mb-1">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                            <p class="mb-0">Saturday - Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../../js/main.js"></script>
+    
+    <script>
+    // Fix for navigation active state
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add active class to current page in navigation
+        const currentPath = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPath)) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const formSuccess = document.getElementById('formSuccess');
+            const formError = document.getElementById('formError');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Hide previous messages
+                    formSuccess.classList.add('d-none');
+                    formError.classList.add('d-none');
+                    
+                    try {
+                        const formData = new FormData(contactForm);
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name: formData.get('name'),
+                                email: formData.get('email'),
+                                subject: formData.get('subject'),
+                                message: formData.get('message')
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            // Show success message
+                            formSuccess.classList.remove('d-none');
+                            contactForm.reset();
+                            
+                            // Scroll to success message
+                            formSuccess.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            throw new Error('Server responded with an error');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        formError.classList.remove('d-none');
+                        formError.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
