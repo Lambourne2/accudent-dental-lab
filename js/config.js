@@ -9,8 +9,8 @@
 window.ACCUDENT_CONFIG = {
     // API URL - Change this when deploying
     // Development: http://localhost:3001
-    // Production: https://your-backend-url
-    API_URL: 'http://localhost:3001',
+    // Production: The Google Cloud Run service URL
+    API_URL: window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://accudent-backend-service-443391063980.us-central1.run.app',
     
     // Version information
     VERSION: '1.0.0',
