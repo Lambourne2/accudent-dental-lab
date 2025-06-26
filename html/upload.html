@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/AccudentLogoBlackTransparent.png" type="image/x-icon">
+    <!-- Configuration -->
+    <script src="../js/config.js"></script>
     <style>
         .upload-area {
             border: 2px dashed #ccc;
@@ -688,8 +690,12 @@
                 
                 console.log('Sending form data:', Object.fromEntries(formDataToSend));
                 
+                // Get the API URL from the configuration or use a default
+                const API_URL = window.ACCUDENT_CONFIG?.API_URL || 'http://localhost:3001';
+                console.log('Using API URL:', API_URL);
+                
                 // Send data to server with CORS headers
-                const response = await fetch('http://localhost:3001/api/upload', {
+                const response = await fetch(`${API_URL}/api/upload`, {
                     method: 'POST',
                     body: formDataToSend,
                     headers: {
