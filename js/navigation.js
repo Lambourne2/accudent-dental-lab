@@ -142,12 +142,7 @@
                             <a class="nav-link ${currentPage === 'contact' ? 'active' : ''}" 
                                href="${getUrl(config.pages.contact.path)}">Contact Us</a>
                         </li>
-                        <li class="nav-item ms-2 d-flex align-items-center">
-                            <a class="btn btn-outline-primary" 
-                               href="${getUrl(config.pages.login.path)}">
-                                <i class="fas fa-user me-1"></i> Login
-                            </a>
-                        </li>
+                        <!-- Login button removed as requested -->
                     </ul>
                 </div>
             </div>
