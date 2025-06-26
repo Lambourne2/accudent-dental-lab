@@ -9,7 +9,7 @@
             upload: { path: '/html/upload.html', title: 'Send a Case' },
             materials: { path: '/html/materials.html', title: 'Materials' },
             contact: { path: '/html/contact.html', title: 'Contact Us' },
-            login: { path: '/html/auth/login.html', title: 'Login' },
+            // login: { path: '/html/auth/login.html', title: 'Login' }, // Removed as requested
             // Material subpages
             emax: { path: '/html/materials/emax.html', title: 'e.max' },
             bruxzirFull: { path: '/html/materials/bruxzir-full.html', title: 'BruxZir Full Strength' },
@@ -94,8 +94,8 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="${getUrl('index.html')}">
-                    <img src="${config.isLocal ? '..' : ''}/images/AccudentLogoBlackTransparent.png" 
-                         alt="Accudent Dental Lab" height="60" class="me-2" onerror="this.onerror=null; this.src='${config.isLocal ? '..' : ''}/images/AccudentLogoBlackTransparent.png';">
+                    <img src="${getUrl('/images/AccudentLogoBlackTransparent.png')}" 
+                         alt="Accudent Dental Lab" height="60" class="me-2" onerror="this.onerror=null; this.src='${getUrl('/images/AccudentLogoBlackTransparent.png')}';">
                     <div class="d-none d-md-block">
                         <div class="fw-bold">Accudent Dental Lab</div>
                         <div class="small text-muted">West Jordan, UT</div>
